@@ -1,6 +1,5 @@
 <?php
-require_once 'includes/google_setup.php';
-$authUrl = $client->createAuthUrl();
+// Google setup removed
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -54,19 +53,7 @@ $authUrl = $client->createAuthUrl();
             
             <button type="submit" class="btn btn-primary" style="width: 100%;">S'inscrire</button>
             
-            <div class="social-divider">Ou s'inscrire avec</div>
-            
-            <div class="social-buttons">
-                <a href="<?php echo htmlspecialchars($authUrl); ?>" class="btn-social" style="text-decoration: none; display: flex; align-items: center; justify-content: center; color: inherit;">
-                    <i class="fab fa-google btn-google"></i> Google
-                </a>
-                <button type="button" class="btn-social">
-                    <i class="fab fa-facebook-f btn-facebook"></i> Facebook
-                </button>
-                <button type="button" class="btn-social">
-                    <i class="fab fa-apple btn-apple"></i> Apple
-                </button>
-            </div>
+             <!-- Social buttons moved or removed as per requirement -->
         </form>
     </div>
 </div>

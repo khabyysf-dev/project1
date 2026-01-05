@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'includes/db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -31,8 +32,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $pdo->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
         $stmt->execute([$name, $email, $hashed_password]);
 
-        // Redirect to login or show success (For now passing query param to login or just redirecting)
-        header("Location: login.php?registered=1");
+        // Get the ID of the new user
+        $newUserId = $pdo->lastInsertId();
+
+        // Log them in
+        $_SESSION['user'] = [
+            'id' => $newUserId,
+            'name' => $name,
+            'email' => $email
+        ];
+
+        // Redirect to homepage
+        header("Location: index.php");
         exit();
     } catch (PDOException $e) {
         die("Erreur lors de l'inscription : " . $e->getMessage());
